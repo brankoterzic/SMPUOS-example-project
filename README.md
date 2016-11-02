@@ -1,2 +1,2 @@
 # SMPOUS
-#This project demostrates usage of Microservice Architecture using Spring Cloud and Netflix
+#This project demonstrates usage of Microservice Architecture using Spring Cloud and Netflix
