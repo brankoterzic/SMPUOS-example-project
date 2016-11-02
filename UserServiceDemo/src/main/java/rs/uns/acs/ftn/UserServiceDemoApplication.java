@@ -19,7 +19,7 @@ public class UserServiceDemoApplication {
 	public String hello(
 			
 			@RequestParam(name = "name") String name){
-		return "Hello " + name + " " + "IGIS 8083";
+		return "Hello " + name + " " + "PORT 8083";
 	}
 	
 	public static void main(String[] args) {

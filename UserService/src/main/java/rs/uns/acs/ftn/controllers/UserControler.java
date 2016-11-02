@@ -30,7 +30,7 @@ public class UserControler extends AbstractRESTController<User, String>{
 	public String hello(
 			
 			@RequestParam(name = "name") String name){
-		return "Hello " + name + " " + "IGIS 8081";
+		return "Hello " + name + " " + "PORT 8081";
 	}
 	
 	@RequestMapping(value = "search/findByFirstName", method = RequestMethod.GET)
