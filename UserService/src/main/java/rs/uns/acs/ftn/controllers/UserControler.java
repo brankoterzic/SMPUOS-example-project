@@ -2,6 +2,7 @@ package rs.uns.acs.ftn.controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,32 @@ public class UserControler extends AbstractRESTController<User, String>{
 	
 	private UserService userService;
 
+    private final Random random = new Random();
+
+    private static final String[] NAMES = new String[] {
+    		"Arnette Whitesides",
+    		"Sherley Holifield ",
+    		"Iva Mathias",
+    		"Joellen Hatch",
+    		"Harley Braziel",
+    		"Oralee Thweatt",
+    		"Mao Lammert",
+    		"Dannette Peru",
+    		"Sherell Service",
+    		"Tamara Bratcher",
+    		"Quintin Vankirk",
+    		"Orval Tarter",
+    		"Alysa Kesterson",
+    		"Krissy Bothwell",
+    		"Freeda Leicht",
+    		"Gemma Crippen",
+    		"Darci Caroll",
+    		"Tarra Argento",
+    		"Corinne Farah",
+    		"Myrta Neuberger"
+
+    };
+    
 	@Autowired
 	public UserControler(UserService userService) {
 		super(userService);
@@ -30,7 +57,8 @@ public class UserControler extends AbstractRESTController<User, String>{
 	public String hello(
 			
 			@RequestParam(name = "name") String name){
-		return "Hello " + name + " " + "PORT 8081";
+
+		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8081}";
 	}
 	
 	@RequestMapping(value = "search/findByFirstName", method = RequestMethod.GET)

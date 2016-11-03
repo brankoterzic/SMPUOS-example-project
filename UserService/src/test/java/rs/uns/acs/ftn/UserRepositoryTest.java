@@ -26,6 +26,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import rs.uns.acs.ftn.models.User;
 import rs.uns.acs.ftn.repositories.UserRepository;
 
+@SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = UserServiceApplication.class)
 @WebAppConfiguration
