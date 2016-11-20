@@ -13,18 +13,19 @@ public class Product implements Serializable{
 	private String id;
 	private String productName;
 	private String productDescription;
-	private String productPrice;
+	private Long productPrice;
 	private Boolean active;
 	
 	public Product(){
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private Product(String id){
 		this.id = id;
 	}
 
-	public Product(String id, String productName, String productDescription, String productPrice, Boolean active) {
+	public Product(String id, String productName, String productDescription, Long productPrice, Boolean active) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -57,11 +58,11 @@ public class Product implements Serializable{
 		this.productDescription = productDescription;
 	}
 
-	public String getProductPrice() {
+	public Long getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(String productPrice) {
+	public void setProductPrice(Long productPrice) {
 		this.productPrice = productPrice;
 	}
 
@@ -127,4 +128,6 @@ public class Product implements Serializable{
 		return "Product [id=" + id + ", productName=" + productName + ", productDescription=" + productDescription
 				+ ", productPrice=" + productPrice + ", active=" + active + "]";
 	}
+
+	
 }

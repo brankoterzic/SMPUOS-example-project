@@ -26,6 +26,8 @@ public interface UserRepository extends MongoRepository<User, String>{
 	
 //	Stream<User> findByFirstName(String firstName);
 	
+	User findByUserNameAndActive(String userName, Boolean active);
+	
 	List<User> findByFirstNameAndLastName(String firsttName, String lastName);
 	
 	List<User> findByAgeGreaterThan(Integer age);

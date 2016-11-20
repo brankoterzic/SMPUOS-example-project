@@ -1,6 +1,8 @@
 package rs.uns.acs.ftn.services;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,12 @@ public abstract class AbstractCRUDService<T, ID extends Serializable> {
 
 	public Page<T> findAll(Pageable pageable) {
 		return repo.findAll(pageable);
+	}
+	
+	public List<T> findByIds(List<ID> ids) {
+		List<T> elements = new ArrayList<T>();
+		ids.forEach(id -> elements.add(this.findOne(id)));
+		return elements;
 	}
 	
 	public T save(T entity) {

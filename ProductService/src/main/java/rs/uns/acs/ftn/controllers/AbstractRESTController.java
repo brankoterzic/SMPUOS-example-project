@@ -63,6 +63,12 @@ public abstract class AbstractRESTController<T, ID extends Serializable> {
 		}
 		return prepareListPage(all);
 	}
+	
+	@RequestMapping(value = "findByIds", method = RequestMethod.GET)
+	public List<T> findByIds(
+		@RequestParam(name = "ids") List<ID> ids) {
+		return service.findByIds(ids);
+	}
 
 	/**
 	 * Get all entities matching given id.

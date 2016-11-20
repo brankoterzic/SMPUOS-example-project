@@ -22,4 +22,5 @@ public class ProductService extends AbstractCRUDService<Product, String>{
 	public List<Product> findByProductName(String name){
 		return productRepository.findByProductName(name);
 	}
+	
 }

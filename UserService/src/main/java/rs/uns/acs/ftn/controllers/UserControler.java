@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import rs.uns.acs.ftn.models.User;
 import rs.uns.acs.ftn.services.UserService;
@@ -20,6 +25,7 @@ import rs.uns.acs.ftn.services.UserService;
 public class UserControler extends AbstractRESTController<User, String>{
 	
 	private UserService userService;
+	private RestTemplate restTemplate;
 
     private final Random random = new Random();
 
@@ -48,9 +54,10 @@ public class UserControler extends AbstractRESTController<User, String>{
     };
     
 	@Autowired
-	public UserControler(UserService userService) {
+	public UserControler(UserService userService, RestTemplate restTemplate) {
 		super(userService);
 		this.userService = userService;
+		this.restTemplate = restTemplate;
 	}
 	
 	@RequestMapping(value = "/hello")
@@ -59,6 +66,23 @@ public class UserControler extends AbstractRESTController<User, String>{
 			@RequestParam(name = "name") String name){
 
 		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8081}";
+	}
+	
+	@RequestMapping(value = "/login")
+	public User login(
+			@RequestParam(name = "userName") String userName,
+			@RequestParam(name = "password") String password){
+		return userService.login(userName, password);
+	}
+	
+	@RequestMapping(value = "/search/getAllProducts")
+	public String getAllProducts(){
+				
+		String result = restTemplate.getForObject("http://localhost:8082/products", String.class);
+		JsonObject obj = new JsonParser().parse(result).getAsJsonObject();
+		JsonArray array = obj.get("elements").getAsJsonArray();
+		
+		return array.toString();
 	}
 	
 	@RequestMapping(value = "search/findByFirstName", method = RequestMethod.GET)
