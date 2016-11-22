@@ -1,9 +1,9 @@
 package rs.uns.acs.ftn.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,7 +14,7 @@ public class ShoppingCart implements Serializable{
 	@Id
 	private String id;
 	private String userId;
-	private DateTime date;
+	private Date date;
 	private Double sumPrice;
 	private List<CartItem> items;
 	
@@ -26,7 +26,7 @@ public class ShoppingCart implements Serializable{
 		this.id = id;
 	}
 
-	public ShoppingCart(String id, String userId, DateTime date, Double sumPrice, List<CartItem> items) {
+	public ShoppingCart(String id, String userId, Date date, Double sumPrice, List<CartItem> items) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -51,11 +51,11 @@ public class ShoppingCart implements Serializable{
 		this.userId = userId;
 	}
 
-	public DateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(DateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

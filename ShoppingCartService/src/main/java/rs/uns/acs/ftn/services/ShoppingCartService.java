@@ -1,7 +1,8 @@
 package rs.uns.acs.ftn.services;
 
 import java.util.Date;
-import java.util.List;import org.joda.time.DateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,10 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		ShoppingCart cart = new ShoppingCart();
 		
 		cart.setUserId(userId);
-		cart.setDate(DateTime.now());
+		cart.setDate(new Date());
 		cart.setSumPrice(calculateSumPrice(items));
 		cart.setItems(items);
+		shoppingCartRepository.save(cart);
 		
 		return cart;
 	}
