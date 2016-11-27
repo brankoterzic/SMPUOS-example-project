@@ -21,6 +21,11 @@ public class UserService extends AbstractCRUDService<User, String>{
 		this.userRepository = userRepository;
 	}
 	
+	public Boolean checkProductsFromCart(List<String> ids){
+		
+		return findByIds(ids).size() == ids.size();
+	}
+	
 	public User login(String userName, String password){
 		User user = userRepository.findByUserNameAndActive(userName, true);
 		

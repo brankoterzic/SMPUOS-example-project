@@ -31,7 +31,12 @@ public class ShoppingCartController extends AbstractRESTController<ShoppingCart,
 			@PathVariable(name = "userId") String userId
 			){
 		
-		return shoppingCartSrevice.createShoppingCart(items, userId);
+		Boolean productsOK = shoppingCartSrevice.checkProductsFromCart(items);
+		
+		if(productsOK)
+			return shoppingCartSrevice.createShoppingCart(items, userId);
+		
+		return null;
 	}
-
+	
 }

@@ -7,6 +7,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,6 +67,13 @@ public class UserControler extends AbstractRESTController<User, String>{
 			@RequestParam(name = "name") String name){
 
 		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8081}";
+	}
+	
+	@RequestMapping(value = "/checkProductsFromCart")
+	public Boolean checkProductsFromCart(
+			@RequestBody List<String> ids
+			){
+		return userService.checkProductsFromCart(ids);
 	}
 	
 	@RequestMapping(value = "/login")
