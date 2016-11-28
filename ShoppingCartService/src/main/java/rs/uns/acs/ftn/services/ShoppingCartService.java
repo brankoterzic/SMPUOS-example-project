@@ -47,7 +47,7 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		
 		for(CartItem item : items){
 			if(item.getPrice() != null){
-				sum+=item.getPrice();
+				sum+=(item.getPrice() != null ? item.getPrice() : 0) * (item.getQTY() != null ? item.getQTY() : 0);
 			}
 		}
 		
