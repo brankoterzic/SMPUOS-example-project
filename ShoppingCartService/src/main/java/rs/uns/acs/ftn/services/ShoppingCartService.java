@@ -46,19 +46,20 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		Double sum = 0.;
 		
 		for(CartItem item : items){
-			if(item.getPrice() != null){
-				sum+=(item.getPrice() != null ? item.getPrice() : 0) * (item.getQTY() != null ? item.getQTY() : 0);
+			if(item.getProductPrice() != null){
+				sum+=(item.getProductPrice() != null ? item.getProductPrice() : 0) * (item.getQTY() != null ? item.getQTY() : 0);
 			}
 		}
 		
 		return sum;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Boolean checkProductsFromCart(List<CartItem> items){
 		
 		JsonArrayBuilder ids = JsonBuilderFactory.buildArray();
 		for(CartItem item : items){
-			ids.add(item.getId());
+			ids.add(item.getProductId());
 		}
 		
 		

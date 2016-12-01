@@ -5,37 +5,37 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class CartItem implements Serializable{
 
-	private String id;
-	private String name;
+	private String productId;
+	private String productName;
 	private Integer QTY;
-	private Double price;
+	private Double productPrice;
 	
 	public CartItem(){
 		
 	}
 
-	public CartItem(String id, String name, Integer qTY, Double price) {
+	public CartItem(String productId, String productName, Integer qTY, Double productPrice) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.productId = productId;
+		this.productName = productName;
 		QTY = qTY;
-		this.price = price;
+		this.productPrice = productPrice;
 	}
 
-	public String getId() {
-		return id;
+	public String getProductId() {
+		return productId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public Integer getQTY() {
@@ -46,22 +46,21 @@ public class CartItem implements Serializable{
 		QTY = qTY;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getProductPrice() {
+		return productPrice;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((QTY == null) ? 0 : QTY.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
+		result = prime * result + ((productPrice == null) ? 0 : productPrice.hashCode());
 		return result;
 	}
 
@@ -74,33 +73,27 @@ public class CartItem implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		CartItem other = (CartItem) obj;
-		if (QTY == null) {
-			if (other.QTY != null)
+		if (productId == null) {
+			if (other.productId != null)
 				return false;
-		} else if (!QTY.equals(other.QTY))
+		} else if (!productId.equals(other.productId))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (productName == null) {
+			if (other.productName != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!productName.equals(other.productName))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (productPrice == null) {
+			if (other.productPrice != null)
 				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (price == null) {
-			if (other.price != null)
-				return false;
-		} else if (!price.equals(other.price))
+		} else if (!productPrice.equals(other.productPrice))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CartItem [id=" + id + ", name=" + name + ", QTY=" + QTY + ", price=" + price + "]";
+		return "CartItem [productId=" + productId + ", productName=" + productName + ", QTY=" + QTY + ", productPrice="
+				+ productPrice + "]";
 	}
-
-	
 }

@@ -17,14 +17,12 @@ public class Payment implements Serializable {
 	private String currency;
 	private String cardId;
 	private Date paymentDate;
-	private Date shippingDate;
 	
 	public Payment(){
 		
 	}
-	
-	public Payment(String id, String userId, String shoppingCartId, String currency, String cardId, Date paymentDate,
-			Date shippingDate) {
+
+	public Payment(String id, String userId, String shoppingCartId, String currency, String cardId, Date paymentDate) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -32,7 +30,6 @@ public class Payment implements Serializable {
 		this.currency = currency;
 		this.cardId = cardId;
 		this.paymentDate = paymentDate;
-		this.shippingDate = shippingDate;
 	}
 
 	public String getId() {
@@ -83,14 +80,6 @@ public class Payment implements Serializable {
 		this.paymentDate = paymentDate;
 	}
 
-	public Date getShippingDate() {
-		return shippingDate;
-	}
-
-	public void setShippingDate(Date shippingDate) {
-		this.shippingDate = shippingDate;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,7 +88,6 @@ public class Payment implements Serializable {
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((paymentDate == null) ? 0 : paymentDate.hashCode());
-		result = prime * result + ((shippingDate == null) ? 0 : shippingDate.hashCode());
 		result = prime * result + ((shoppingCartId == null) ? 0 : shoppingCartId.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
@@ -134,11 +122,6 @@ public class Payment implements Serializable {
 				return false;
 		} else if (!paymentDate.equals(other.paymentDate))
 			return false;
-		if (shippingDate == null) {
-			if (other.shippingDate != null)
-				return false;
-		} else if (!shippingDate.equals(other.shippingDate))
-			return false;
 		if (shoppingCartId == null) {
 			if (other.shoppingCartId != null)
 				return false;
@@ -155,7 +138,6 @@ public class Payment implements Serializable {
 	@Override
 	public String toString() {
 		return "Payment [id=" + id + ", userId=" + userId + ", shoppingCartId=" + shoppingCartId + ", currency="
-				+ currency + ", cardId=" + cardId + ", paymentDate=" + paymentDate + ", shippingDate=" + shippingDate
-				+ "]";
+				+ currency + ", cardId=" + cardId + ", paymentDate=" + paymentDate + "]";
 	}
 }
