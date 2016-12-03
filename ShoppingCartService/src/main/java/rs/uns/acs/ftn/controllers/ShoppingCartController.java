@@ -32,11 +32,11 @@ public class ShoppingCartController extends AbstractRESTController<ShoppingCart,
 			){
 		
 		Boolean productsOK = shoppingCartSrevice.checkProductsFromCart(items);
+		Boolean userOK = shoppingCartSrevice.checkUser(userId);
 		
-		if(productsOK)
+		if(productsOK && userOK)
 			return shoppingCartSrevice.createShoppingCart(items, userId);
 		
 		return null;
 	}
-	
 }

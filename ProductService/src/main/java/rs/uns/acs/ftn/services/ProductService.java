@@ -19,6 +19,11 @@ public class ProductService extends AbstractCRUDService<Product, String>{
 		this.productRepository = repo;
 	}
 	
+	public Boolean checkProductsFromCart(List<String> ids){
+		
+		return findByIds(ids).size() == ids.size();
+	}
+	
 	public List<Product> findByProductName(String name){
 		return productRepository.findByProductName(name);
 	}

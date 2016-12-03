@@ -21,11 +21,6 @@ public class UserService extends AbstractCRUDService<User, String>{
 		this.userRepository = userRepository;
 	}
 	
-	public Boolean checkProductsFromCart(List<String> ids){
-		
-		return findByIds(ids).size() == ids.size();
-	}
-	
 	public User login(String userName, String password){
 		User user = userRepository.findByUserNameAndActive(userName, true);
 		
@@ -44,6 +39,10 @@ public class UserService extends AbstractCRUDService<User, String>{
 	
 	public Page<User> findByFirstName(String firstName, Pageable pageable){
 		return userRepository.findByFirstName(firstName, pageable);
+	}
+
+	public User findByIdAndActive(String userId, Boolean isActive) {
+		return userRepository.findByIdAndActive(userId, isActive);
 	}
 
 }

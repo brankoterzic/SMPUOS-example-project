@@ -49,5 +49,7 @@ public interface UserRepository extends MongoRepository<User, String>{
 	List<User> findByActiveIsFalse();
 	
 	List<User> findByDateOfBirthBetween(Date start, Date end);
+
+	User findByIdAndActive(String userId, Boolean isActive);
 	
 }

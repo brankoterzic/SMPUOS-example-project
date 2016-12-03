@@ -6,9 +6,6 @@ import java.util.List;
 import org.jglue.fluentjson.JsonArrayBuilder;
 import org.jglue.fluentjson.JsonBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -47,13 +44,18 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		
 		for(CartItem item : items){
 			if(item.getProductPrice() != null){
-				sum+=(item.getProductPrice() != null ? item.getProductPrice() : 0) * (item.getQTY() != null ? item.getQTY() : 0);
+				sum+=(item.getProductPrice() != null ? item.getProductPrice() : 0) * (item.getQTY() != null ? item.getQTY() : 1);
 			}
 		}
 		
 		return sum;
 	}
 	
+	/**
+	 * Method checks if products from user shopping cart exist on Product service. 
+	 * @param items
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	public Boolean checkProductsFromCart(List<CartItem> items){
 		
@@ -62,23 +64,23 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 			ids.add(item.getProductId());
 		}
 		
+		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
 		
-		Boolean isProductsOK = postS("http://localhost:8081/users/checkProductsFromCart", ids.toString());
-		
+		Boolean isProductsOK = c.postS("http://localhost:8082/products/checkProductsFromCart", ids.toString());
 		return isProductsOK;
-
-	}
-	
-	private Boolean postS(String url, String requestBody){
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> req = new HttpEntity<String>(requestBody, headers);
-		try{
-			return restTemplate.postForObject(url, req, Boolean.class);
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}
 	}
 
+	/**
+	 * Method checks if the given user is registered and active
+	 * @param userId
+	 * @return
+	 */
+	public Boolean checkUser(String userId) {
+		
+		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
+		
+		Boolean userExists = c.getS("http://localhost:8081/users/checkUser?userId=" + userId);
+		
+		return userExists;
+	}
 }
