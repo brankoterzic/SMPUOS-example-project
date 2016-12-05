@@ -61,18 +61,18 @@ public class UserControler extends AbstractRESTController<User, String>{
 		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8081}";
 	}
 	
-	@RequestMapping(value = "/checkUser")
+	@RequestMapping(value = "/checkUser", method = RequestMethod.GET)
 	public Boolean checkUser(
 			@RequestParam(name = "userId") String userId
 	){
 		User user = userService.findByIdAndActive(userId, true);
 		return user != null;
 	}
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public User login(
-			@RequestParam(name = "userName") String userName,
+			@RequestParam(name = "mail") String mail,
 			@RequestParam(name = "password") String password){
-		return userService.login(userName, password);
+		return userService.login(mail, password);
 	}
 	
 	@RequestMapping(value = "search/findByFirstName", method = RequestMethod.GET)

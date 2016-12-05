@@ -21,8 +21,9 @@ public class UserService extends AbstractCRUDService<User, String>{
 		this.userRepository = userRepository;
 	}
 	
-	public User login(String userName, String password){
-		User user = userRepository.findByUserNameAndActive(userName, true);
+	public User login(String mail, String password){
+		Boolean isActive = true;
+		User user = userRepository.findByMailAndActive(mail, isActive);
 		
 		if(user != null){
 			if(user.getPassword().equals(password)){

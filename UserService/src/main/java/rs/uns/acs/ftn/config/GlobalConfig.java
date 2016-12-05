@@ -32,67 +32,67 @@ public class GlobalConfig {
 		return template;
 	}
 	
-	@Bean
-	public Jackson2ObjectMapperBuilder objectMapperBuilder() {
-		return new Jackson2ObjectMapperBuilder() {
-			@Override
-			public void configure(ObjectMapper objectMapper) {
-				super.configure(objectMapper);
-				objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
-				
-				objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-				objectMapper.setVisibility(PropertyAccessor.GETTER, Visibility.NONE);
-				
-				SimpleModule module = new SimpleModule();
-				
-				module.addSerializer(
-						GeoJsonPoint.class,
-						new SerializationDeserialization.GeoJsonPointSerializer()
-				);
-				module.addSerializer(
-						GeoJsonPolygon.class,
-						new SerializationDeserialization.GeoJsonPolygonSerializer()
-				);
-		
-				module.addDeserializer(
-						GeoJsonPoint.class,
-						new SerializationDeserialization.GeoJsonPointDeserialization()
-				);
-				module.addDeserializer(
-						GeoJsonPolygon.class,
-						new SerializationDeserialization.GeoJsonPolygonDeserialization()
-				);
-		
-				module.addSerializer(
-						Date.class,
-						new SerializationDeserialization.DateSerializer(dateFormat)
-				);
-				module.addDeserializer(
-						Date.class,
-						new SerializationDeserialization.DateDeserializer(dateFormat)
-				);
-					
-				module.addSerializer(
-						ZonedDateTime.class,
-						new SerializationDeserialization.ZonedDateTimeSerializer(dateFormat)
-				);
-				module.addDeserializer(
-						ZonedDateTime.class,
-						new SerializationDeserialization.ZonedDateTimeDeserializer(dateFormat)
-				);
-				
-				module.addSerializer(
-						ZoneId.class,
-						new SerializationDeserialization.ZoneIdSerializer()
-				);
-				module.addDeserializer(
-						ZoneId.class,
-						new SerializationDeserialization.ZoneIdDeserializer()
-				);
-				objectMapper.registerModule(module);
-				
-				simpleDateFormat(dateFormat);
-			}
-		};
-	}
+//	@Bean
+//	public Jackson2ObjectMapperBuilder objectMapperBuilder() {
+//		return new Jackson2ObjectMapperBuilder() {
+//			@Override
+//			public void configure(ObjectMapper objectMapper) {
+//				super.configure(objectMapper);
+//				objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+//				
+//				objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+//				objectMapper.setVisibility(PropertyAccessor.GETTER, Visibility.NONE);
+//				
+//				SimpleModule module = new SimpleModule();
+//				
+//				module.addSerializer(
+//						GeoJsonPoint.class,
+//						new SerializationDeserialization.GeoJsonPointSerializer()
+//				);
+//				module.addSerializer(
+//						GeoJsonPolygon.class,
+//						new SerializationDeserialization.GeoJsonPolygonSerializer()
+//				);
+//		
+//				module.addDeserializer(
+//						GeoJsonPoint.class,
+//						new SerializationDeserialization.GeoJsonPointDeserialization()
+//				);
+//				module.addDeserializer(
+//						GeoJsonPolygon.class,
+//						new SerializationDeserialization.GeoJsonPolygonDeserialization()
+//				);
+//		
+//				module.addSerializer(
+//						Date.class,
+//						new SerializationDeserialization.DateSerializer(dateFormat)
+//				);
+//				module.addDeserializer(
+//						Date.class,
+//						new SerializationDeserialization.DateDeserializer(dateFormat)
+//				);
+//					
+//				module.addSerializer(
+//						ZonedDateTime.class,
+//						new SerializationDeserialization.ZonedDateTimeSerializer(dateFormat)
+//				);
+//				module.addDeserializer(
+//						ZonedDateTime.class,
+//						new SerializationDeserialization.ZonedDateTimeDeserializer(dateFormat)
+//				);
+//				
+//				module.addSerializer(
+//						ZoneId.class,
+//						new SerializationDeserialization.ZoneIdSerializer()
+//				);
+//				module.addDeserializer(
+//						ZoneId.class,
+//						new SerializationDeserialization.ZoneIdDeserializer()
+//				);
+//				objectMapper.registerModule(module);
+//				
+//				simpleDateFormat(dateFormat);
+//			}
+//		};
+//	}
 }

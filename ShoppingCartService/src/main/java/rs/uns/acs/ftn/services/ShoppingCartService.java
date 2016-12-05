@@ -44,7 +44,7 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		
 		for(CartItem item : items){
 			if(item.getProductPrice() != null){
-				sum+=(item.getProductPrice() != null ? item.getProductPrice() : 0) * (item.getQTY() != null ? item.getQTY() : 1);
+				sum+= item.getProductPrice() * (item.getQTY() != null ? item.getQTY() : 1);
 			}
 		}
 		
@@ -66,7 +66,8 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		
 		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
 		
-		Boolean isProductsOK = c.postS("http://localhost:8082/products/checkProductsFromCart", ids.toString());
+		//Boolean isProductsOK = c.postS("http://localhost:8082/products/checkProductsFromCart", ids.toString());
+		Boolean isProductsOK = c.postS("http://localhost:8765/product-service/products/checkProductsFromCart", ids.toString());
 		return isProductsOK;
 	}
 
@@ -79,7 +80,8 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		
 		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
 		
-		Boolean userExists = c.getS("http://localhost:8081/users/checkUser?userId=" + userId);
+		//Boolean userExists = c.getS("http://localhost:8081/users/checkUser?userId=" + userId);
+		Boolean userExists = c.getS("http://localhost:8765/user-service/users/checkUser?userId=" + userId);
 		
 		return userExists;
 	}

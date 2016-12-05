@@ -49,14 +49,14 @@ public class ShoppingCartServiceApplicationTests {
 		JsonArrayBuilder items  = JsonBuilderFactory.buildArray()
 						.add(
 							 JsonBuilderFactory.buildObject()
-								.add("id", "1")
-								.add("name", "product1")
-								.add("price", 120.)
+								.add("productId", "1")
+								.add("productName", "product1")
+								.add("productPrice", 120.)
 						).add(
 							 JsonBuilderFactory.buildObject()
-								.add("id", "1")
-								.add("name", "product1")
-								.add("price", 120.)	
+								.add("productId", "1")
+								.add("productName", "product1")
+								.add("productPrice", 120.)	
 						);
 		
 		JsonObject obj = JsonBuilderFactory.buildObject()

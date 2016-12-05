@@ -29,5 +29,31 @@ public class Converters {
 		}
 	}
 	
+	public static class DateToStringConverter implements Converter<Date, String> {
+		
+		private String dateFormat;
+		
+		public DateToStringConverter(String dateFormat) {
+			super();
+			this.dateFormat = dateFormat;
+		}
+		
+		@Override
+	    public String convert(Date source) {
+	    	SimpleDateFormat format = new SimpleDateFormat(dateFormat);
+	    	return format.format(source);
+		}
+	}
 
+	public static class StringTOStringConverter implements Converter<String, String> {
+		
+		public StringTOStringConverter() {
+			super();
+		}
+		
+		@Override
+	    public String convert(String source) {
+	    	return source.toString();
+		}
+	}
 }

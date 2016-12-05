@@ -32,12 +32,13 @@ public class MongoConfig extends AbstractMongoConfiguration {
 		return mongodb_databasename;
 	}
 	
-	@Override
-    public CustomConversions customConversions() {
-		 return new CustomConversions( Arrays.asList(
-        		new Converters.StringToDateConverter(dateFormat)
-		 ));
-    }
+//	@Override
+//    public CustomConversions customConversions() {
+//		 return new CustomConversions( Arrays.asList(
+//        		new Converters.StringToDateConverter(dateFormat),
+//        		new Converters.DateToStringConverter(dateFormat)
+//		 ));
+//    }
 
 	@Override
 	public Mongo mongo() throws Exception {
