@@ -216,6 +216,4 @@ public class User implements Serializable{
 				+ ", password=" + password + ", mail=" + mail + ", age=" + age + ", active=" + active
 				+ ", userLocation=" + userLocation + ", dateOfBirth=" + dateOfBirth + "]";
 	}
-	
-	
 }
