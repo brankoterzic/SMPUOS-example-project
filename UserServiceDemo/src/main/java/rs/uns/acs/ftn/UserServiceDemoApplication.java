@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
  //This service is used to demonstrate how ribbon round robin works with load-balancing 
@@ -44,9 +43,7 @@ public class UserServiceDemoApplication {
     };
 
 	@RequestMapping(value = "/hello")
-	public String hello(
-			
-			@RequestParam(name = "name") String name){
+	public String hello(){
 		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8083}";
 	}
 	

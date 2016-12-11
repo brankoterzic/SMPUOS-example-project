@@ -54,9 +54,7 @@ public class UserControler extends AbstractRESTController<User, String>{
 	}
 	
 	@RequestMapping(value = "/hello")
-	public String hello(
-			
-			@RequestParam(name = "name") String name){
+	public String hello(){
 
 		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8081}";
 	}

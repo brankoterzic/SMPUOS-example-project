@@ -14,11 +14,11 @@ public class HystrixService {
 	private Hello hello;// feign client
 	
 	@HystrixCommand(fallbackMethod="defaultHi")// method that will be called if the hello method fails = if the user service is down
-	public String hello(String name){
-		return hello.hello(name);
+	public String hello(){
+		return hello.hello();
 	}
 	
-	public String defaultHi(String name){ // signature of failbackMethod must match hello method!
+	public String defaultHi(){ // signature of failbackMethod must match hello method!
 		return "DEFAULT HI";
 	}
 }
