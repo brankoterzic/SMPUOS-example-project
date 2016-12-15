@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ import rs.uns.acs.ftn.services.UserService;
 @RestController
 @RequestMapping("users")
 public class UserControler extends AbstractRESTController<User, String>{
+	
+	@Autowired
+	Environment environment;
 	
 	private UserService userService;
 	
@@ -56,7 +60,7 @@ public class UserControler extends AbstractRESTController<User, String>{
 	@RequestMapping(value = "/hello")
 	public String hello(){
 
-		return NAMES[random.nextInt(NAMES.length)] + " {PORT 8081}";
+		return NAMES[random.nextInt(NAMES.length)] +"[PORT: "+ environment.getProperty("local.server.port") + "]";
 	}
 	
 	@RequestMapping(value = "/checkUser", method = RequestMethod.GET)
