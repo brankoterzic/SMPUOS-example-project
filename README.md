@@ -3,4 +3,6 @@
 ##Project contains four microservices: User, ShoppingCart, Product and Payment
 ##Project contains services for microservice auto-discovery: Eureka microservice and request proxy service: Zool microservice
 ##Project demonstrates usage of Netflix load balancers: Hystrics and cicuit brakers: Ribbon
-
+# Frontend
+##Install all dependencies by calling ```npm install``` in frontend folder.
+##Start frontend server by calling ```npm start``` in frontend folder.
