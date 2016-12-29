@@ -19,9 +19,9 @@ class RibbonConfig{
         //return new RoundRobinRule();
         
         /*This rule will skip servers that are deemed "circuit tripped" or with high concurrent connection count.
-         * By default, an instance is circuit tripped if the RestClient fails to make a connection to it for the last three times.
-         *  Once an instance is circuit tripped, it will remain in this state for 30 seconds before the circuit is deemed as closed again. 
-         *  However, if it continues to fail connections, it will become "circuit tripped" again and the wait time for it to become "circuit closed" will increase exponentially to the number of consecutive failures.
+         *By default, an instance is circuit tripped if the RestClient fails to make a connection to it for the last three times.
+         *Once an instance is circuit tripped, it will remain in this state for 30 seconds before the circuit is deemed as closed again. 
+         *However, if it continues to fail connections, it will become "circuit tripped" again and the wait time for it to become "circuit closed" will increase exponentially to the number of consecutive failures.
          */
         //return new AvailabilityFilteringRule()
         
