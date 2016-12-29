@@ -12,8 +12,11 @@ class RibbonConfig{
     @Bean
     public IRule ribbonRule() {
     	
-    	/*This rule simply choose servers by round robin. It is often used as the default rule or fallback of more advanced rules.*/
+    	/*A loadbalacing strategy that randomly distributes traffic amongst existing servers.*/
         return new RandomRule();
+        
+    	/*This rule simply choose servers by round robin. It is often used as the default rule or fallback of more advanced rules.*/
+        //return new RoundRobinRule();
         
         /*This rule will skip servers that are deemed "circuit tripped" or with high concurrent connection count.
          * By default, an instance is circuit tripped if the RestClient fails to make a connection to it for the last three times.
@@ -24,9 +27,11 @@ class RibbonConfig{
         
         /*For this rule, each server is given a weight according to its average response time. 
          *The longer the response time, the less weight it will get. 
-         *The rule randomly picks a server where the possibility is determined by server's weight.*/
+         *The rule randomly picks a server where the possibility is determined by server's weight.
+         */
     	//return new WeightedResponseTimeRule();
         
+        /*Server zones based roles*/
     	//return new BestAvailableRule();
     	//return new ZoneAvoidanceRule();
     }
