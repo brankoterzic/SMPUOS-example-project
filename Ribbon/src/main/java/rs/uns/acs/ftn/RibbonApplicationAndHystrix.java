@@ -42,7 +42,7 @@ public class RibbonApplicationAndHystrix {
 
 	@RequestMapping(value = "/", produces = "text/html")
 	public String produce() {
-		// String s = rest.getForObject("http://user-service/users/hello", String.class);// using rest template
+		//String s = rest.getForObject("http://user-service/users/hello", String.class);// using rest template
 
 		// String s = hello.hello(); // feign REST client call
 
