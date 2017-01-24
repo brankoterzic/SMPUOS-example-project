@@ -1,6 +1,6 @@
 # SMPUOS
-=======
-##This project demonstrates usage of Microservice Architecture using Spring Cloud and Netflix
+
+##This project demonstrates usage of Microservice Architecture using Spring Cloud and NetflixOSS
 - Eureka
 - Zuul
 - Hystrics
@@ -9,9 +9,9 @@
 
 ##Project contains four microservices:
 - UserService - stores information about users, autentification and authorization 
-- ShoppingCart - stores information about user shopping carts
-- Product - stores information about products available on web shop
-- Payment - stores information about payments
+- ShoppingCartService - stores information about user shopping carts
+- ProductService - stores information about products available on web shop
+- PaymentService - stores information about payments
 
 ##Frontend
 - Install all dependencies by calling ```npm install``` in frontend folder.
