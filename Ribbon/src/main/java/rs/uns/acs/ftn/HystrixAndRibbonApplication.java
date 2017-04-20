@@ -18,9 +18,9 @@ import rs.uns.acs.ftn.services.HystrixService;
 // @EnableDiscoveryClient
 // @EnableCircuitBreaker
 @SpringCloudApplication
-@RestController
 @EnableFeignClients
-public class RibbonApplicationAndHystrix {
+@RestController
+public class HystrixAndRibbonApplication {
 	
 	@Autowired
 	private LoadBalancerClient lb;
@@ -34,8 +34,7 @@ public class RibbonApplicationAndHystrix {
 	@Autowired
 	private HystrixService hystrixService;
 
-	@RequestMapping("/choose") // Do load-balancing among the user-service
-								// instances
+	@RequestMapping("/choose") // Do load-balancing among the user-service instances
 	public ServiceInstance choose() {
 		return lb.choose("user-service");
 	}
@@ -52,13 +51,13 @@ public class RibbonApplicationAndHystrix {
 				+ "</body>" + "</html>", s);
 	}
 
-	@FeignClient("user-service")
+	@FeignClient("user-service")//the server.port property name, for the service
 	public interface Hello {
-		@RequestMapping(value = "users/hello", method = RequestMethod.GET)
-		String hello();
+		@RequestMapping(value = "users/hello", method = RequestMethod.GET)// the endpoint which will be balanced over
+		String hello();// the method specification must be the same as for users/hello
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(RibbonApplicationAndHystrix.class, args);
+		SpringApplication.run(HystrixAndRibbonApplication.class, args);
 	}
 }

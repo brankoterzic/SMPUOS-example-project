@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import rs.uns.acs.ftn.RibbonApplicationAndHystrix.Hello;
+import rs.uns.acs.ftn.HystrixAndRibbonApplication.Hello;
 
 @Service
 public class HystrixService {
@@ -13,7 +13,7 @@ public class HystrixService {
 	@Autowired
 	private Hello hello;// feign client
 	
-	@HystrixCommand(fallbackMethod="defaultHi")// method that will be called if the hello method fails = if the user service is down
+	@HystrixCommand(fallbackMethod="defaultHi")// method that will be called if the hello(user-service: users/hello) method fails = if the user service is down
 	public String hello(){
 		return hello.hello();
 	}
