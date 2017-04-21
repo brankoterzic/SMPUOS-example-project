@@ -3,7 +3,7 @@ package rs.uns.acs.ftn;
 import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
@@ -11,9 +11,9 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 //@SpringBootApplication
 //@EnableDiscoveryClient
 //@EnableCircuitBreaker
+@EnableAutoConfiguration
 @SpringCloudApplication
 @EnableFeignClients
-@SpringBootApplication
 public class ShoppingCartServiceApplication {
 	
 	public static void main(String[] args) {

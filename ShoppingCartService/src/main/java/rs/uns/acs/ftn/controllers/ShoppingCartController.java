@@ -32,12 +32,11 @@ public class ShoppingCartController extends AbstractRESTController<ShoppingCart,
 			@RequestBody List<CartItem> items,
 			@PathVariable(name = "userId") String userId
 			){
-//		String k = shoppingCartSrevice.hello();
-		//Boolean productsOK = shoppingCartSrevice.checkProductsFromCart(items);
+		Boolean productsOK = shoppingCartSrevice.checkProductsFromCart(items);
 		Boolean userOK = shoppingCartSrevice.checkUser(userId);
 		
-		if(userOK != null)
-			if(userOK)
+		if(userOK != null && productsOK != null)
+			if(userOK && productsOK)
 				return shoppingCartSrevice.createShoppingCart(items, userId);
 		
 		return null;

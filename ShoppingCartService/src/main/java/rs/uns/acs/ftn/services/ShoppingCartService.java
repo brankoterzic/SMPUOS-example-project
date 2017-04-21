@@ -89,6 +89,7 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 	 */
 	@HystrixCommand(fallbackMethod="fallbackCheckUser")
 	public Boolean checkUser(String userId) {
+		
 //		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
 				
 		//Boolean userExists = c.getS("http://localhost:8081/users/checkUser?userId=" + userId);
