@@ -1,16 +1,16 @@
 package rs.uns.acs.ftn.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.jglue.fluentjson.JsonArrayBuilder;
-import org.jglue.fluentjson.JsonBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import rs.uns.acs.ftn.controllers.ShoppingCartController.ProductServiceClient;
 import rs.uns.acs.ftn.controllers.ShoppingCartController.UserServiceClient;
 import rs.uns.acs.ftn.models.CartItem;
 import rs.uns.acs.ftn.models.ShoppingCart;
@@ -25,8 +25,8 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 	@Autowired
 	private UserServiceClient userServiceClient;// feign client
 	
-//	@Autowired
-//	private Hello hello;
+	@Autowired
+	private ProductServiceClient productServiceClient;
 	
 	@Autowired
 	public ShoppingCartService(ShoppingCartRepository repo, RestTemplate restTemplate) {
@@ -63,29 +63,42 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 	/**
 	 * Method checks if products from user shopping cart exist on Product service. 
 	 * @param items
-	 * @return
+	 * @return if product exists
 	 */
-	@SuppressWarnings("rawtypes")
+	@HystrixCommand(fallbackMethod="fallbackCheckProductsFromCart")
 	public Boolean checkProductsFromCart(List<CartItem> items){
 		/*WITHOUT USING LOAD-BALANCING*/
-
-		JsonArrayBuilder ids = JsonBuilderFactory.buildArray();
+		
+//		JsonArrayBuilder ids = JsonBuilderFactory.buildArray();
+//		for(CartItem item : items){
+//			ids.add(item.getProductId());
+//		}
+		
+//		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
+//		
+//		//Boolean isProductsOK = c.postS("http://localhost:8082/products/checkProductsFromCart", ids.toString());
+//		Boolean isProductsOK = c.postS("http://localhost:8765/product-service/products/checkProductsFromCart", ids.toString());
+//		return isProductsOK;
+		
+		List<String> ids = new ArrayList<String>();
 		for(CartItem item : items){
 			ids.add(item.getProductId());
 		}
 		
-		CommunicationService<Boolean> c = new CommunicationService<>(Boolean.class, restTemplate);
-		
-		//Boolean isProductsOK = c.postS("http://localhost:8082/products/checkProductsFromCart", ids.toString());
-		Boolean isProductsOK = c.postS("http://localhost:8765/product-service/products/checkProductsFromCart", ids.toString());
-		return isProductsOK;
+		Boolean isProductOK = productServiceClient.checkProductsFromCart(ids);
+		return isProductOK;
+	}
+	
+	public Boolean fallbackCheckProductsFromCart(List<CartItem> items){
+		System.out.println("???????????????????????????????????");
+		return true;
 	}
 
 	/**
 	 * Method checks if the given user is registered and active
 	 * We use Ribbon and Feign to get data from user-service, load-balancing 
 	 * @param userId
-	 * @return
+	 * @return if user exists
 	 */
 	@HystrixCommand(fallbackMethod="fallbackCheckUser")
 	public Boolean checkUser(String userId) {
@@ -105,14 +118,4 @@ public class ShoppingCartService extends AbstractCRUDService<ShoppingCart, Strin
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		return true;
 	}
-	
-//	@HystrixCommand(fallbackMethod="defaultHi")// method that will be called if the hello(user-service: users/hello) method fails = if the user service is down
-//	public String hello(){
-//		return hello.hello();
-//	}
-//	
-//	public String defaultHi(){ // signature of failbackMethod must match hello method!
-//		System.out.println("?????????????????????????????????????????????");
-//		return "DEFAULT HI";
-//	}
 }
