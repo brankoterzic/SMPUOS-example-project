@@ -6,13 +6,12 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import rs.uns.acs.ftn.services.HystrixService;
+import rs.uns.acs.ftn.services.HystrixService.Hello;
 
 // @SpringBootApplication
 // @EnableDiscoveryClient
@@ -45,16 +44,10 @@ public class HystrixAndRibbonApplication {
 
 		// String s = hello.hello(); // feign REST client call
 
-		 String s = hystrixService.hello(); // call fegin client hello method throught hystrix call
+		 String s = hystrixService.hello(); // call fegin client hello method using hystrix call
 
 		return String.format("<html>" + "<head>" + "<title>TEST</title>" + "</head>" + "<body>" + "<h1>%s</h1>"
 				+ "</body>" + "</html>", s);
-	}
-
-	@FeignClient("user-service")//the server.port property name, for the service
-	public interface Hello {
-		@RequestMapping(value = "users/hello", method = RequestMethod.GET)// the endpoint which will be balanced over
-		String hello();// the method specification must be the same as for users/hello
 	}
 
 	public static void main(String[] args) {
