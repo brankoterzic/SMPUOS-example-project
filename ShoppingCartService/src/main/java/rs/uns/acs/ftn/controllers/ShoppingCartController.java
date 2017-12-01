@@ -42,10 +42,10 @@ public class ShoppingCartController extends AbstractRESTController<ShoppingCart,
 		return null;
 	}
 	
-	@FeignClient("user-service")//the application.name for user service
+	@FeignClient("user-service")//the application.name for the user service
 	public interface UserServiceClient {
 		@RequestMapping(value = "users/checkUser", method = RequestMethod.GET)// the endpoint which will be balanced over
-		Boolean checkUser(@RequestParam(name = "userId") String userId);// the method specification must be the same as for users/hello
+		Boolean checkUser(@RequestParam(name = "userId") String userId);// the method specification must be the same as for users/checkUser
 	}
 	
 	@FeignClient("product-service")

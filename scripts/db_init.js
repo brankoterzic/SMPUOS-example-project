@@ -25,11 +25,8 @@ var insertDefaultData = function(conn, sufix){
 	insertDefaultDataUser(userserviceDb);
 };
 
-dropDatabases(connection,"dev");
 dropDatabases(connection,"dpy");
 
-createDatabasesAndCollections(connection,"dev");
 createDatabasesAndCollections(connection,"dpy");
 
-insertDefaultData(connection,"dev");
 insertDefaultData(connection,"dpy");
