@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.turbine.stream.EnableTurbineStream;
 public class TurbineServiceApplication 
 {
 	// turbine stream: http://localhost:8999/turbine/turbine.stream pasete in hystrics dashboard
-	// to start straming, push first request.
+	// to start straming, push first request on the load-balanced endpoint
 	public static void main(String[] args) {
     	SpringApplication app = new SpringApplication(TurbineServiceApplication.class);    	
     	app.run(args);	

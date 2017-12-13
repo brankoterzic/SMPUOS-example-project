@@ -32,7 +32,11 @@ class RibbonConfig{
     	//return new WeightedResponseTimeRule();
         
         /*Server zones based roles*/
+        
+        //A rule that skips servers with "tripped" circuit breaker and picks the server with lowest concurrent requests.
     	//return new BestAvailableRule();
+        
+        //Avoids the Amazon EC2 zone that has the most malfunctioning servers
     	//return new ZoneAvoidanceRule();
     }
 }

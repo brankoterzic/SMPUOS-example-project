@@ -11,7 +11,8 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 public class HystrixDashboardApplication {
 	
 	//monitor on http://localhost:7979/hystrix
-	//url string  http://localhost:9000/hystrix.stream
+	//url string  http://localhost:9000/hystrix.stream - for individual streams
+	//		      http://localhost:8999/turbine.stream - for all streams using turbine
 
 	public static void main(String[] args) {
 		SpringApplication.run(HystrixDashboardApplication.class, args);

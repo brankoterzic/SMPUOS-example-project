@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>Eureka</name>
-	<description>Eureca Discovery Service</description>
+	<description>Eureka Discovery Service</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
