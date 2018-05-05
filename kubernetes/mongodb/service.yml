@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  ports:
+    - port: 27017 #The port that will be exposed by this service.
+      targetPort: 27017 #Number or name of the port to access on the pods targeted by the service.
+  selector:
+    app: mongo-service
+  type: NodePort

@@ -26,6 +26,15 @@ public class UserControler extends AbstractRESTController<User, String>{
 		this.userService = userService;
 	}
 	
+	@RequestMapping(value = "/hello")
+	public String hello(){
+		
+		System.out.println("EXEC");
+
+		return String.format("<html>" + "<head>" + "<title>TEST</title>" + "</head>" + "<body>" + "<h1>HELLO</h1>"
+				+ "</body>" + "</html>");			
+	}
+	
 	@RequestMapping(value = "search/findByFirstName", method = RequestMethod.GET)
 	public List<User> findByAreaOfDanger(
 			@RequestParam(name = "firstName") String firstName) {

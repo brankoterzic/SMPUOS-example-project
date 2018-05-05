@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-service
+    spec:
+      containers:
+      - name: mongo-service
+        image: mongo
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongo-persistent-storage
+          hostPath:
+                path: /data/storage/mongodb
