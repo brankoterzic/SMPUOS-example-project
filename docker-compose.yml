@@ -17,7 +17,16 @@ services:
       - mongodb
       - eureka-service
       - zuul-service
-      
+
+  ribbon-service:
+    build: ./Ribbon
+    ports: #map host machine ports to container ports (expose is the alternative)
+      - "9000:9000"
+    environment:
+      eureka.client.service-url.defaultZone: http://eureka-service:8761/eureka/
+    depends_on: #define service startup ordering, here user-service starts last
+      - user-service
+
   mongodb:
     image: mongo
     volumes:

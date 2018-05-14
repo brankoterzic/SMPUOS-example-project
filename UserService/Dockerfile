@@ -1,4 +1,4 @@
-FROM    :8-jdk-alpine
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 
 ADD target/UserService-0.0.1-SNAPSHOT.jar UserService-0.0.1-SNAPSHOT.jar
