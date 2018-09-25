@@ -1,3 +1,44 @@
+#Gradle
+.gradletasknamecache
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Java
 .mvn
+.classpath
 target
-/.project
+data/
+.metadata/
+build/
+bin/
+*.cla
