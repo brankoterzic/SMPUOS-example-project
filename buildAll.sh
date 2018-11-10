@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#START config service first
-
 cd ConfigurationService && chmod +x build.sh && ./build.sh
 cd ../Eureka && chmod +x build.sh && ./build.sh
 cd ../PaymentService && chmod +x build.sh && ./build.sh

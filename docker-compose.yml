@@ -3,8 +3,9 @@ version: '3'
 services:
   
   user-service:
-    build: ./UserService
-    ports: #map host machine ports to container ports (expose is the alternative)
+    #image:
+    build: ./SpringDataMongoDB
+    ports: #map host machine ports to container ports (expose is an alternative)
       - "8081:8081"
     environment:
       mongodb.databasename: userservice-dpy
@@ -12,36 +13,12 @@ services:
       mongodb.port: 27017
       general.pageSize: 20
       general.dateFormat: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
-      eureka.client.service-url.defaultZone: http://eureka-service:8761/eureka/
     depends_on: #define service startup ordering, here user-service starts last
       - mongodb
-      - eureka-service
-      - zuul-service
-
-  ribbon-service:
-    build: ./Ribbon
-    ports: #map host machine ports to container ports (expose is the alternative)
-      - "9000:9000"
-    environment:
-      eureka.client.service-url.defaultZone: http://eureka-service:8761/eureka/
-    depends_on: #define service startup ordering, here user-service starts last
-      - user-service
 
   mongodb:
     image: mongo
     volumes:
-      - $HOME/data/rmmvp-mongo-data:/data/db
-      - $HOME/data/rmmvp-mongo-bkp:/data/bkp
-
-  eureka-service:
-    build: ./Eureka
-    ports:
-      - "8761:8761"
-
-  zuul-service:
-    build: ./Zuul
-    ports:
-      - "8765:8765"
-    environment:
-      eureka.client.service-url.defaultZone: http://eureka-service:8761/eureka/
+      - $HOME/data/mongo-data:/data/db
+      - $HOME/data/mongo-bkp:/data/bkp
 
